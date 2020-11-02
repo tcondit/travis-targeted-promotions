@@ -1,0 +1,27 @@
+language: python
+python:
+  - 3.7
+before_install:
+  - bash write_pip_config.sh
+install:
+  - pip install -r dev-requirements.txt
+script:
+  - invoke test
+  - bash docker.sh update_image
+  # UNDO
+  # Temporary for testing. This will be a pre-task of deploy-jobs.
+  - invoke update-job-configs
+deploy:
+  provider: script
+  script:
+    - invoke deploy-jobs
+  on:
+    all_branches: true
+    condition: $TRAVIS_BRANCH =~ ^(dev|stage|master)$
+env:
+  global:
+    # ARTIFACTORY_USERNAME
+    - secure: [secure]
+    # ARTIFACTORY_PASSWORD
+    - secure: [secure]
+
