@@ -11,6 +11,11 @@ deploy:
   - provider: script
     script:
       bash docker.sh update_image
+    on:
+      all_branches: true
+      condition: $TRAVIS_BRANCH =~ ^(dev)$
+  - provider: script
+    script:
       invoke update-job-configs
     on:
       all_branches: true
