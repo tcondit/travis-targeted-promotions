@@ -20,7 +20,7 @@ deploy:
       invoke deploy-jobs
     on:
       all_branches: true
-      condition: $TRAVIS_BRANCH =~ ^(dev|stage|master)$
+      condition: $TRAVIS_BRANCH =~ ^(dev|stage|main)$
 env:
   global:
     # ARTIFACTORY_USERNAME
