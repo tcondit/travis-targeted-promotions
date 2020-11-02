@@ -3,3 +3,5 @@
 update_image() {
   echo "Hello from docker.sh - update_image"
 }
+
+update_image
