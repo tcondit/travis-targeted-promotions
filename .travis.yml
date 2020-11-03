@@ -10,6 +10,7 @@ script:
 deploy:
   - provider: script
     script:
+      shellcheck docker.sh
       bash docker.sh update_image
     on:
       all_branches: true
